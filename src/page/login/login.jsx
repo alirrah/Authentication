@@ -1,9 +1,24 @@
-import { Button, Checkbox, Form, Input, Card } from 'antd';
+import { Button, Checkbox, Form, Input, Card, notification } from 'antd';
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 
 function Login() {
+    const [api, contextHolder] = notification.useNotification();
     const[clickBtn, setClickbtn] = useState(false);
     const [form] = Form.useForm();
+    let navigate = useNavigate();
+
+    const openNotificationWithIcon = (type, message, description) => {
+        api[type]({
+            message: [message],
+            description: [description],
+            onClose: () => {
+                if(type == "success"){
+                    navigate("/dashboard");
+                }
+            }
+        });
+    };
 
     const onFinish = (values) => {
         setClickbtn(true)
@@ -20,6 +35,8 @@ function Login() {
 
     return (
         <Card>
+            {contextHolder}
+            
             <img
                 width={50}
                 src="/images.png"
