@@ -1,7 +1,14 @@
 import { Button, Checkbox, Form, Input, Card } from 'antd';
+import { useState } from 'react';
 
 function Login() {
+    const[clickBtn, setClickbtn] = useState(false);
     const [form] = Form.useForm();
+
+    const onFinish = (values) => {
+        setClickbtn(true)
+        setClickbtn(false)
+    }
 
     const onReset = () => {
         form.setFieldsValue({
@@ -35,6 +42,7 @@ function Login() {
                     username: "kminchelle",
                     password: "0lelplR"
                 }}
+                onFinish={onFinish}
                 autoComplete="off"
             >
 
@@ -80,6 +88,7 @@ function Login() {
                         type="primary"
                         htmlType="submit"
                         className='submitBtn'
+                        disabled={clickBtn}
                     >
                         Submit
                     </Button>
