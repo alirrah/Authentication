@@ -1,6 +1,16 @@
 import { Button, Checkbox, Form, Input, Card } from 'antd';
 
 function Login() {
+    const [form] = Form.useForm();
+
+    const onReset = () => {
+        form.setFieldsValue({
+            username: "",
+            password: "",
+            remember: true
+        })
+    }
+
     return (
         <Card>
             <img
@@ -9,6 +19,7 @@ function Login() {
             />
 
             <Form
+                form={form}
                 name="basic"
                 labelCol={{
                     span: 8,
@@ -18,6 +29,11 @@ function Login() {
                 }}
                 style={{
                     maxWidth: 600,
+                }}
+                initialValues={{
+                    remember: true,
+                    username: "kminchelle",
+                    password: "0lelplR"
                 }}
                 autoComplete="off"
             >
@@ -68,7 +84,7 @@ function Login() {
                         Submit
                     </Button>
 
-                    <Button htmlType="button">
+                    <Button htmlType="button" onClick={onReset}>
                         Reset
                     </Button>
                 </Form.Item>
