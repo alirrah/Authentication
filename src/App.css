@@ -1,0 +1,41 @@
+html,
+body{
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.submitBtn {
+    margin-right: 20px;
+}
+
+.ant-empty-description {
+    font-size: 50px;
+    font-weight: 600;
+    color: #1677ff !important;
+}
+
+.ant-empty-image {
+    height: 150px !important;
+}
+
+.notFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ant-card-body img{
+    margin-bottom: 20px;
+}
