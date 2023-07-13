@@ -1,6 +1,21 @@
+import { useNavigate } from "react-router-dom";
+import { notification } from 'antd';
 import axios from 'axios';
 
 function Dashboard() {
+    let navigate = useNavigate();
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotificationWithIcon = () => {
+        api.error({
+            message: "Error",
+            description: "Access denied",
+            onClose: () => {
+                navigate('/');
+            }
+        });
+    };
+
     const auth = () => {
         if (localStorage.length >= 2) {
             let username = localStorage.getItem("username")
