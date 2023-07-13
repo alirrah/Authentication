@@ -1,10 +1,11 @@
 import { Button, Checkbox, Form, Input, Card, notification } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import axios from 'axios';
 
 function Login() {
     const [api, contextHolder] = notification.useNotification();
-    const[clickBtn, setClickbtn] = useState(false);
+    const [clickBtn, setClickbtn] = useState(false);
     const [form] = Form.useForm();
     let navigate = useNavigate();
 
@@ -13,7 +14,7 @@ function Login() {
             message: [message],
             description: [description],
             onClose: () => {
-                if(type == "success"){
+                if (type == "success") {
                     navigate("/dashboard");
                 }
             }
@@ -21,22 +22,41 @@ function Login() {
     };
 
     const onFinish = (values) => {
-        setClickbtn(true)
-        setClickbtn(false)
+        setClickbtn(true);
+
+        axios({
+            method: 'post',
+            url: 'https://dummyjson.com/auth/login',
+            data: {
+                username: values.username,
+                password: values.password,
+            }
+        }).then((response) => {
+            if (response.status == 200) {
+                localStorage.setItem('username', values.username);
+                localStorage.setItem('password', values.password);
+                
+                openNotificationWithIcon('success', 'Welcome', response.data.firstName + ' ' + response.data.lastName + ' logged in.')
+            }
+        }).catch((error) => {
+            openNotificationWithIcon("error", "Error", error.response.data.message)
+        });
+
+        setClickbtn(false);
     }
 
     const onReset = () => {
         form.setFieldsValue({
             username: "",
             password: "",
-            remember: true
+            remember: true,
         })
     }
 
     return (
         <Card>
             {contextHolder}
-            
+
             <img
                 width={50}
                 src="/images.png"
