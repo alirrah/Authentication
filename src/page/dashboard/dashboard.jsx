@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { notification } from 'antd';
-import axios from 'axios';
 
 function Dashboard() {
     let navigate = useNavigate();
