@@ -33,9 +33,8 @@ function Login() {
             }
         }).then((response) => {
             if (response.status == 200) {
-                localStorage.setItem('username', values.username);
-                localStorage.setItem('password', values.password);
-                
+                localStorage.setItem('name', response.data.firstName + ' ' + response.data.lastName);
+                localStorage.setItem('token', response.data.token);
                 openNotificationWithIcon('success', 'Welcome', response.data.firstName + ' ' + response.data.lastName + ' logged in.')
             }
         }).catch((error) => {
