@@ -1,4 +1,4 @@
-import { Empty, Button } from 'antd';
+import { Result, Button } from 'antd';
 import { useNavigate } from "react-router-dom";
 
 function NotFound() {
@@ -10,9 +10,12 @@ function NotFound() {
 
     return (
         <div className='notFound'>
-            <Empty description="404" />
-
-            <Button onClick={routeChange}>Go Login Page</Button>
+            <Result
+                status="404"
+                title="404"
+                subTitle="Sorry, the page you visited does not exist."
+                extra={<Button type="primary" onClick={routeChange}>Go Login Page</Button>}
+            />           
         </div>
     )
 }
